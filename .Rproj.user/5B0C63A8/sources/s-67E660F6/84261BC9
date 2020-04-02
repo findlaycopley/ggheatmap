@@ -1,18 +1,18 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1585843554953.000,
+    "created" : 1585847028572.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "182138CB",
-    "lastKnownWriteTime" : 1585847093,
-    "last_content_update" : 1585847093801,
-    "path" : "D:/OneDrive/Software/MyGits/ggheatmap/R/ggheatmap.R",
-    "project_path" : "R/ggheatmap.R",
+    "id" : "84261BC9",
+    "lastKnownWriteTime" : 1585847097,
+    "last_content_update" : 1585847097,
+    "path" : "D:/OneDrive/Software/MyGits/ggheatmap/NAMESPACE",
+    "project_path" : "NAMESPACE",
     "properties" : {
-        "cursorPosition" : "9,16",
+        "cursorPosition" : "0,0",
         "scrollLine" : "0"
     },
     "read_only" : false,
@@ -21,5 +21,5 @@
     "relative_order" : 10,
     "source_on_save" : false,
     "source_window" : "",
-    "type" : "r_source"
+    "type" : "r_namespace"
 }

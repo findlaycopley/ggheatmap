@@ -6,16 +6,10 @@
 #' @param PRINT TRUE/FALSE should the plot be displayed (default: TRUE)
 #' @description Runs the entire pipeline to generate a heatmap
 #' @keywords plot heatmap
-#' @export
+#' @export ggheatmap
+#' @export testData
 #' @examples
 #' heatmapClass <- plotHeatmap(heatmapClass, scale="row", Rowv = TRUE, Colv = TRUE)
-
-y <- matrix(c(1,2,3,
-              5,5,6,
-              3,2,1,
-              4,3,6), nrow=3) %>%
-        'colnames<-'(c("sample1","sample2","sample3","sample4")) %>%
-        'rownames<-'(c("gene1","gene2","gene3"))
 
 ggheatmap <- function(matrix, scale="row", Rowv = TRUE, Colv = TRUE, PRINT = TRUE) {
         heatmapClass <- heatmapClass(RawData = matrix, Rowv = Rowv, Colv = Colv)
@@ -38,3 +32,10 @@ ggheatmap <- function(matrix, scale="row", Rowv = TRUE, Colv = TRUE, PRINT = TRU
         heatmapClass <- buildHeatmap(heatmapClass, PRINT = PRINT)
         heatmapClass
 }
+
+testData <- matrix(c(1,2,3,
+                     5,5,6,
+                     3,2,1,
+                     4,3,6), nrow=3) %>%
+        'colnames<-'(c("sample1","sample2","sample3","sample4")) %>%
+        'rownames<-'(c("gene1","gene2","gene3"))
