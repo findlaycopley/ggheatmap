@@ -1,0 +1,7 @@
+"0","```r
+plot_spacer() + plot_spacer() + z@Plot$Col_dend +
+        z@Plot$Row_dend + row + z@Plot$Heatmap + 
+        plot_layout(heights=c(1,5),
+                    widths=c(1,0.5,5), 
+                    nrow=2)
+```"

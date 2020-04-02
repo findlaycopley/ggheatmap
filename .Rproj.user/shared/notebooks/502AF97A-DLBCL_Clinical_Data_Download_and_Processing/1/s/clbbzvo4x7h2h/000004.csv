@@ -1,0 +1,44 @@
+"0","```r
+
+library(ggdendro)
+```"
+"1","
+Attaching package: ã¤¼ã¸±ggdendroã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:DNAcopyã¤¼ã¸²:
+
+    segment
+"
+"0","```r
+library(magrittr)
+```"
+"1","
+Attaching package: ã¤¼ã¸±magrittrã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:purrrã¤¼ã¸²:
+
+    set_names
+
+The following object is masked from ã¤¼ã¸±package:tidyrã¤¼ã¸²:
+
+    extract
+"
+"0","```r
+library(ggplot2)
+library(reshape)
+```"
+"1","
+Attaching package: ã¤¼ã¸±reshapeã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    rename
+
+The following objects are masked from ã¤¼ã¸±package:tidyrã¤¼ã¸²:
+
+    expand, smiths
+"
+"0","```r
+library(dplyr)
+library(patchwork)
+```"

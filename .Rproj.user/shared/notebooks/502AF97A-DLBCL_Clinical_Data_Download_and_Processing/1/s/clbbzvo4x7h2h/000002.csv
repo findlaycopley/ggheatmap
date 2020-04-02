@@ -1,0 +1,4 @@
+"0","```r
+library(heatmap3)
+heatmap3(exprs(reddy[200:300,1:100]), scale=\"row\")
+```"

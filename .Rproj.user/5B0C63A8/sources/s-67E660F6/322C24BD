@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585836358372.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "322C24BD",
+    "lastKnownWriteTime" : 1585846019,
+    "last_content_update" : 1585846019493,
+    "path" : "D:/OneDrive/Software/MyGits/ggheatmap/R/scaleMatrix.R",
+    "project_path" : "R/scaleMatrix.R",
+    "properties" : {
+        "cursorPosition" : "0,29",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

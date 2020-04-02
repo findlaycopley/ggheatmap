@@ -1,0 +1,113 @@
+"0","```r
+x <- heatmapClass(RawData = exprs(reddy))
+
+y <- matrix(c(1,2,3,5,5,6,3,2,1,4,3,6), nrow=3) %>%
+        'colnames<-'(c(\"sample1\",\"sample2\",\"sample3\",\"sample4\")) %>%
+        'rownames<-'(c(\"gene1\",\"gene2\",\"gene3\"))
+
+z <- heatmapClass(RawData = y)
+z <- x
+scaleMatrix <- function(heatmapClass, type=\"row\") {
+        matrix <- heatmapClass@RawData
+        if (type == \"row\") {
+                matrix = t(matrix)
+        }
+        matrix = scale(matrix)
+        if (type == \"row\") {
+                matrix = t(matrix)
+        }
+        heatmapClass@ProcessedData <- matrix
+        heatmapClass@Information[[\"Scaling\"]] <- type
+        heatmapClass
+}
+z <- scaleMatrix(z)
+generateRowDendro <- function(heatmapClass) {
+        heatmapClass@PlotData[[\"Hclust_Row\"]] <- hclust(as.dist(1-cor(t(heatmapClass@ProcessedData), method=\"pearson\")), method=\"complete\")
+        heatmapClass
+}
+z <- generateRowDendro(z)
+generateColDendro <- function(heatmapClass) {
+        heatmapClass@PlotData[[\"Hclust_Col\"]] <- hclust(as.dist(1-cor(heatmapClass@ProcessedData, method=\"spearman\")), method=\"complete\")
+        heatmapClass
+}
+z <- generateColDendro(z)
+plotDendro <- function(heatmapClass, row=TRUE, col=TRUE) {
+        if (row) {
+        heatmapClass@Plot[[\"Row_dend\"]] <- heatmapClass@PlotData$Hclust_Row %>%
+                dendro_data(type=\"rectangle\") %>%
+                segment() %>%
+                ggplot(aes(x = x, y = y, xend = xend, yend = yend)) +
+                geom_segment() +
+                coord_flip() +
+                scale_y_reverse() +
+                theme(axis.text = element_blank(),
+                      axis.ticks = element_blank(),
+                      axis.title = element_blank(),
+                      panel.grid.major = element_blank(), 
+                      panel.grid.minor = element_blank(),
+                      panel.background = element_blank()) +
+                scale_x_discrete()
+        }
+        if (col) {
+        heatmapClass@Plot[[\"Col_dend\"]] <- heatmapClass@PlotData$Hclust_Col %>%
+                dendro_data(type=\"rectangle\") %>%
+                segment() %>%
+                ggplot(aes(x = x, y = y, xend = xend, yend = yend)) +
+                geom_segment() +
+                theme(axis.text = element_blank(),
+                      axis.ticks = element_blank(),
+                      axis.title = element_blank(),
+                      panel.grid.major = element_blank(), 
+                      panel.grid.minor = element_blank(),
+                      panel.background = element_blank()) +
+                scale_x_discrete()
+        }
+        heatmapClass
+}
+z <- plotDendro(z)
+
+ifelse(z@Information$Scaling == \"none\", \"expression\",\"z score\")
+```"
+"1","[1] \"z score\"
+"
+"0","```r
+plotHeatmap <- function(heatmapClass) {
+        heatmapClass@Plot[[\"Heatmap\"]] <- heatmapClass@ProcessedData %>%
+                melt() %>%
+                ggplot(aes(x=factor(X2, levels=z@PlotData$Hclust_Col$labels[z@PlotData$Hclust_Col$order]),
+                           y=factor(X1, levels=z@PlotData$Hclust_Row$labels[z@PlotData$Hclust_Row$order]),
+                           fill=value)) +
+                geom_tile() + 
+                scale_fill_gradient2(low = \"blue\",
+                                     mid = \"white\",
+                                     high = \"red\",
+                                     midpoint = 0,
+                                     name = ifelse(heatmapClass@Information$Scaling == \"none\",
+                                                 \"expression\",
+                                                 \"z score\")) +
+                scale_y_discrete(position=\"right\") +
+                labs(x=\"\",y=\"\") + 
+                theme(panel.grid.major = element_blank(), 
+                      panel.grid.minor = element_blank(),
+                      panel.background = element_blank(),
+                      axis.text.x = element_text(angle = 90,
+                                                 hjust = 1,
+                                                 vjust = 0.5)) +
+                guides(fill = guide_colourbar(title.position = \"top\", 
+                                              title.hjust = 0.5))
+                
+        heatmapClass
+}
+z <- plotHeatmap(z)
+
+(plot_spacer() +
+        z@Plot$Col_dend +
+        z@Plot$Row_dend +
+        z@Plot$Heatmap + 
+        plot_layout(heights=c(1,5),
+                    widths=c(1,5), 
+                    nrow=2)) /
+        guide_area() + plot_layout(heights = c(5,1), guides = \"collect\") & 
+        theme(plot.margin = unit(rep(0.01,4),\"mm\"))
+ggsave(\"test2.svg\", width=10,height=10)
+```"

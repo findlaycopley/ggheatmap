@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585836566956.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BDE19FF0",
+    "lastKnownWriteTime" : 1585846038,
+    "last_content_update" : 1585846038829,
+    "path" : "D:/OneDrive/Software/MyGits/ggheatmap/R/generateColDendro.R",
+    "project_path" : "R/generateColDendro.R",
+    "properties" : {
+        "cursorPosition" : "0,26",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
