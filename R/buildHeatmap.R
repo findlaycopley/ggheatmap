@@ -23,7 +23,7 @@ buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
         } else if (heatmapClass@Rowv) {
                 print("Row")
                 ## row Dendro and heatamp
-                heatmapClass@Plot$Combo <- (z@Plot$Row_dend + z@Plot$Heatmap +
+                heatmapClass@Plot$Combo <- (heatmapClass@Plot$Row_dend + heatmapClass@Plot$Heatmap +
                                                     ## setlayout
                                                     plot_layout(widths=c(1,5),
                                                                 ncol=2)) &
