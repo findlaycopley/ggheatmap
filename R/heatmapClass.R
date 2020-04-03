@@ -7,7 +7,10 @@
 #' @param RowData Data frame of info for row sidebars (optional)
 #' @param Information list of various aspects of the data
 #' @keywords Mutation Waterfall
-#' @export
+#' @export heatmapClass
+#' @export colOrder
+#' @export rowOrder
+#' @export heatmapClass
 #' @examples
 #' heatmapClass <- heatmapClass(RawData = expressionMatrix)
 
