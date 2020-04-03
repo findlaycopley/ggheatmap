@@ -10,7 +10,6 @@
 #' @export heatmapClass
 #' @export colOrder
 #' @export rowOrder
-#' @export heatmapClass
 #' @examples
 #' heatmapClass <- heatmapClass(RawData = expressionMatrix)
 
