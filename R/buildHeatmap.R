@@ -9,7 +9,6 @@
 
 buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
         if (heatmapClass@Rowv & heatmapClass@Colv) {
-                print("Col and Row")
                 ## Space and column Dendro
                 heatmapClass@Plot$Combo <- (patchwork::plot_spacer() +
                                                     heatmapClass@Plot$Col_dend +
@@ -22,7 +21,6 @@ buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
                         ## remove padding
                         ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
         } else if (heatmapClass@Rowv) {
-                print("Row")
                 ## row Dendro and heatamp
                 heatmapClass@Plot$Combo <- (heatmapClass@Plot$Row_dend + heatmapClass@Plot$Heatmap +
                                                     ## setlayout
@@ -31,7 +29,6 @@ buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
                         ## remove padding
                         ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
         } else if (heatmapClass@Colv) {
-                print("Col")
                 ## column Dendro
                 heatmapClass@Plot$Combo <- (heatmapClass@Plot$Col_dend +
                                                     ## heatmap

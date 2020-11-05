@@ -27,6 +27,28 @@ heatmapClass <- setClass("heatmapClass", slots = c(RawData="matrix",
                                  Rowv = TRUE
                          ))
 
+setMethod("show", "heatmapClass",
+          function(object) {
+                  if (ggplot2::is.ggplot(object@Plot$Combo)) {
+                          print(object@Plot$Combo)
+                  } else {
+                          cat("This is an instance of ggheatmap","\n")
+                          # cat("Samples:",
+                          #     object@plotdata$SampleData$SampleCol %>%
+                          #             levels(),
+                          #     "\n")
+                          # cat("Genes:",
+                          #     object@plotdata$GeneData$GeneCol %>%
+                          #             levels(),
+                          #     "\n")
+                          # cat("Number of Mutations:",
+                          #     object@mutationData %>%
+                          #             dim(.) %>%
+                          #             .[1])
+                  }
+          }
+)
+
 colOrder <- function(heatmapClass) {
         if ("colOrder" %in% names(heatmapClass@Information)) {
                 heatmapClass@Information$colOrder

@@ -14,8 +14,6 @@
 plotHeatmap <- function(heatmapClass, high = "red", mid = "white", low = "blue", midpoint = 0) {
         heatmapClass@PlotData[["Heatmap"]] <- heatmapClass@ProcessedData %>%
                 reshape2::melt()
-                #'colnames'(c("Y", "X", "value"))
-        print(heatmapClass@PlotData[["Heatmap"]])
         heatmapClass@Plot[["Heatmap"]] <- heatmapClass@PlotData[["Heatmap"]] %>%
                 ggplot2::ggplot(
                         ggplot2::aes(x=factor(Var2, levels=colOrder(heatmapClass)),
