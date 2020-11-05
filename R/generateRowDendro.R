@@ -5,9 +5,9 @@
 #' @export
 #' @examples
 #' heatmapClass <- generateRowDendro(heatmapClass)
-
 generateRowDendro <- function(heatmapClass) {
         heatmapClass@PlotData[["Hclust_Row"]] <- hclust(as.dist(1-cor(t(heatmapClass@ProcessedData), method="pearson")), method="complete")
+        heatmapClass@PlotData[["Hclust_Row"]] <- hclust(dist(heatmapClass@RawData))
         heatmapClass@Information$rowOrder <- heatmapClass@PlotData$Hclust_Row$labels[heatmapClass@PlotData$Hclust_Row$order]
         heatmapClass@Information$rowDendro = TRUE
         heatmapClass

@@ -10,25 +10,40 @@
 #' @export testData
 #' @examples
 #' heatmapClass <- plotHeatmap(heatmapClass, scale="row", Rowv = TRUE, Colv = TRUE)
-
-ggheatmap <- function(matrix, scale="row", Rowv = TRUE, Colv = TRUE, PRINT = TRUE) {
-        heatmapClass <- heatmapClass(RawData = matrix, Rowv = Rowv, Colv = Colv)
+#' @importFrom magrittr %>%
+ggheatmap <- function(matrix,
+                      scale="row",
+                      Rowv = TRUE,
+                      Colv = TRUE,
+                      PRINT = TRUE) {
+        ## Create the heatmap class
+        heatmapClass <- heatmapClass(RawData = matrix,
+                                     Rowv = Rowv,
+                                     Colv = Colv)
+        ## Scale matrix based on the scale parameter
         print("Scale data frame")
         if (scale == "row" | scale == "col" ){
+                ## If scale set (default row) scale the matrix
                 heatmapClass <- scaleMatrix(heatmapClass, type=scale)
         } else {
+                ## Of scale not set do not scale the matrix
                 heatmapClass@ProcessedData <- heatmapClass@RawData
         }
+        ## If Rowv true generate dendrograms to plot for rows
         if (Rowv) {
                 heatmapClass <- generateRowDendro(heatmapClass)
         }
+        ## If Colv true generate dendrograms to plot for cols
         if (Colv) {
                 heatmapClass <- generateColDendro(heatmapClass)
         }
+        ## If either Colv or Rowv are TRUE plot them
         if (Colv | Rowv) {
                 heatmapClass <- plotDendro(heatmapClass)
         }
+        ## Generate the heatmap
         heatmapClass <- plotHeatmap(heatmapClass)
+        ## Build all the plots together.
         heatmapClass <- buildHeatmap(heatmapClass, PRINT = PRINT)
         heatmapClass
 }

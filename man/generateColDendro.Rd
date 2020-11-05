@@ -8,8 +8,6 @@ generateColDendro(heatmapClass)
 }
 \arguments{
 \item{heatmapClass}{object of class heatmap (required)}
-
-\item{type}{"row" or "column" scaling (default: row)}
 }
 \description{
 uses 1 - spearman correlation to generate a distance matrix and then performs hclust to cluster the columns.

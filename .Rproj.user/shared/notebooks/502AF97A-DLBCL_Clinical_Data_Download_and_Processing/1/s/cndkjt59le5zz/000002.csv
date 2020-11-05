@@ -1,9 +1,0 @@
-"0","```r
-heatmapClass <- setClass(\"heatmapClass\", slots = c(RawData=\"matrix\",
-                                                   ProcessedData=\"matrix\",
-                                                   SampleInfo=\"data.frame\",
-                                                   featureData=\"data.frame\",
-                                                   Plot=\"list\",
-                                                   PlotData=\"list\",
-                                                   Information=\"list\"))
-```"

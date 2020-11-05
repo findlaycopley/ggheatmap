@@ -4,43 +4,45 @@
 #' @param col (TRUE/FALSE) plot dendro for columns (default: TRUE)
 #' @description Plots the dendrograms from the hclust data stored in @PlotData
 #' @keywords plot dendro
+#' @importFrom magrittr %>%
 #' @export
 #' @examples
 #' heatmapClass <- plotDendro(heatmapClass, row=TRUE, col=TRUE)
 
-
 plotDendro <- function(heatmapClass, row=TRUE, col=TRUE) {
         if (row & "Hclust_Row" %in% names(heatmapClass@PlotData)) {
                 heatmapClass@PlotData[["Row_dend"]] <- heatmapClass@PlotData$Hclust_Row %>%
-                        dendro_data(type="rectangle") %>%
-                        segment()
+                        ggdendro::dendro_data(type="rectangle") %>%
+                        ggdendro::segment()
                 heatmapClass@Plot[["Row_dend"]] <- heatmapClass@PlotData[["Row_dend"]] %>%
-                        ggplot(aes(x = x, y = y, xend = xend, yend = yend)) +
-                        geom_segment() +
-                        coord_flip() +
-                        scale_y_reverse() +
-                        theme(axis.text = element_blank(),
-                              axis.ticks = element_blank(),
-                              axis.title = element_blank(),
-                              panel.grid.major = element_blank(),
-                              panel.grid.minor = element_blank(),
-                              panel.background = element_blank()) +
-                        scale_x_discrete()
+                        ggplot2::ggplot(
+                                ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
+                        ggplot2::geom_segment() +
+                        ggplot2::coord_flip() +
+                        ggplot2::scale_y_reverse() +
+                        ggplot2::theme(axis.text = ggplot2::element_blank(),
+                              axis.ticks = ggplot2::element_blank(),
+                              axis.title = ggplot2::element_blank(),
+                              panel.grid.major = ggplot2::element_blank(),
+                              panel.grid.minor = ggplot2::element_blank(),
+                              panel.background = ggplot2::element_blank()) +
+                        ggplot2::scale_x_discrete()
         }
         if (col & "Hclust_Col" %in% names(heatmapClass@PlotData)) {
                 heatmapClass@PlotData[["Col_dend"]] <- heatmapClass@PlotData$Hclust_Col %>%
-                        dendro_data(type="rectangle") %>%
-                        segment()
+                        ggdendro::dendro_data(type="rectangle") %>%
+                        ggdendro::segment()
                 heatmapClass@Plot[["Col_dend"]] <- heatmapClass@PlotData[["Col_dend"]] %>%
-                        ggplot(aes(x = x, y = y, xend = xend, yend = yend)) +
-                        geom_segment() +
-                        theme(axis.text = element_blank(),
-                              axis.ticks = element_blank(),
-                              axis.title = element_blank(),
-                              panel.grid.major = element_blank(),
-                              panel.grid.minor = element_blank(),
-                              panel.background = element_blank()) +
-                        scale_x_discrete()
+                        ggplot2::ggplot(
+                                ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
+                        ggplot2::geom_segment() +
+                        ggplot2::theme(axis.text = ggplot2::element_blank(),
+                              axis.ticks = ggplot2::element_blank(),
+                              axis.title = ggplot2::element_blank(),
+                              panel.grid.major = ggplot2::element_blank(),
+                              panel.grid.minor = ggplot2::element_blank(),
+                              panel.background = ggplot2::element_blank()) +
+                        ggplot2::scale_x_discrete()
         }
         heatmapClass
 }

@@ -11,24 +11,25 @@ buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
         if (heatmapClass@Rowv & heatmapClass@Colv) {
                 print("Col and Row")
                 ## Space and column Dendro
-                heatmapClass@Plot$Combo <- (plot_spacer() + heatmapClass@Plot$Col_dend +
+                heatmapClass@Plot$Combo <- (patchwork::plot_spacer() +
+                                                    heatmapClass@Plot$Col_dend +
                                                     ## row Dendro and heatmap
                                                     heatmapClass@Plot$Row_dend + heatmapClass@Plot$Heatmap +
                                                     ## setlayout
-                                                    plot_layout(heights=c(1,5),
+                                                    patchwork::plot_layout(heights=c(1,5),
                                                                 widths=c(1,5),
                                                                 nrow=2)) &
                         ## remove padding
-                        theme(plot.margin = unit(rep(0.01,4),"mm"))
+                        ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
         } else if (heatmapClass@Rowv) {
                 print("Row")
                 ## row Dendro and heatamp
                 heatmapClass@Plot$Combo <- (z@Plot$Row_dend + z@Plot$Heatmap +
                                                     ## setlayout
-                                                    plot_layout(widths=c(1,5),
+                                                    patchwork::plot_layout(widths=c(1,5),
                                                                 ncol=2)) &
                         ## remove padding
-                        theme(plot.margin = unit(rep(0.01,4),"mm"))
+                        ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
         } else if (heatmapClass@Colv) {
                 print("Col")
                 ## column Dendro
@@ -36,15 +37,15 @@ buildHeatmap <- function(heatmapClass, PRINT = TRUE) {
                                                     ## heatmap
                                                     heatmapClass@Plot$Heatmap +
                                                     ## setlayout
-                                                    plot_layout(heights=c(1,5),
+                                                    patchwork::plot_layout(heights=c(1,5),
                                                                 nrow=2)) &
                         ## remove padding
-                        theme(plot.margin = unit(rep(0.01,4),"mm"))
+                        ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
 
         } else {
                 heatmapClass@Plot$Combo <- heatmapClass@Plot$Heatmap &
                         ## remove padding
-                        theme(plot.margin = unit(rep(0.01,4),"mm"))
+                        ggplot2::theme(plot.margin = ggplot2::unit(rep(0.01,4),"mm"))
         }
         if( PRINT ) {
                 print(heatmapClass@Plot$Combo)

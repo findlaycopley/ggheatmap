@@ -26,8 +26,5 @@ plotHeatmap(
 \description{
 Plots the dendrograms from the hclust data stored in PlotData
 }
-\examples{
-heatmapClass <- plotHeatmap(heatmapClass, high = "red", mid = "white", low = "blue", midpoint = 0)
-}
 \keyword{heatmap}
 \keyword{plot}
