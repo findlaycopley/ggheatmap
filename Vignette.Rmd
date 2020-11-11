@@ -1,0 +1,43 @@
+---
+title: "ggheatmap vignette"
+output: html_notebook
+---
+
+
+```{r}
+install(dependencies = FALSE, quiet = TRUE)
+colour <- c(Mut = "black",
+            WT = "white",
+            "1" = "gray17", 
+            "2" = "gray36", 
+            "3" = "gray49",
+            "4" = "gray60")
+x <- ggheatmap::ggheatmap(ggheatmap::testData, 
+                          SampleData = ggheatmap::testSampleData,
+                          SampleColour = colour,
+                          FeatureData = ggheatmap::testFeatureData,
+                          FeatureColour = colour
+                          )
+```
+
+
+```{r}
+patchwork::plot_spacer() + patchwork::plot_spacer() + x@Plot$Col_dend +
+        patchwork::plot_spacer() + patchwork::plot_spacer() + Box +
+        patchwork::plot_spacer() + patchwork::plot_spacer() + x@Plot$SampleBar +
+        x@Plot$Row_dend + x@Plot$FeatureBar + x@Plot$Heatmap +
+        patchwork::plot_layout(ncol = 3, heights = c(2,2,1,10), widths = c(2,1,10))
+
+Box <- rbind(sample(1:100, 4),
+      sample(1:100, 4),
+      sample(1:100, 4),
+      sample(1:100, 4)) %>% 
+        as.data.frame() %>%
+        'colnames<-'(paste("Sample", 1:4)) %>%
+        reshape2::melt() %>%
+        ggplot2::ggplot(ggplot2::aes(x = variable, y= value)) +
+        ggplot2::geom_boxplot() +
+        ggplot2::scale_y_continuous(position = "right")
+ggplot2::ggsave("test.pdf", width=10, height = 12)
+```
+
