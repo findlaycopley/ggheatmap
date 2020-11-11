@@ -11,7 +11,7 @@
 #' @examples
 #' heatmapClass <- plotHeatmap(heatmapClass, high = "red", mid = "white", low = "blue", midpoint = 0)
 
-plotHeatmap <- function(heatmapClass, high = "red", mid = "white", low = "blue", midpoint = 0) {
+plotHeatmap <- function(heatmapClass, high = muted("red"), mid = "white", low = muted("blue"), midpoint = 0) {
         heatmapClass@PlotData[["Heatmap"]] <- heatmapClass@ProcessedData %>%
                 reshape2::melt()
         heatmapClass@Plot[["Heatmap"]] <- heatmapClass@PlotData[["Heatmap"]] %>%
